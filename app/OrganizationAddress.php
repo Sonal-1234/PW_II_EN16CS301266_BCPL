@@ -1,0 +1,30 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property integer id
+ * @property integer organization_id
+ * @property string type
+ * @property integer phone1
+ * @property integer phone2
+ * @property string address1
+ * @property string address2
+ * @property string address3
+ * @property string postal_code
+ * @property string city
+ * @property string state
+ */
+class OrganizationAddress extends Model {
+
+    const RESIDENCE = 'RESIDENCE';
+    protected $fillable = [
+        'organization_id', 'type', 'phone1', 'phone2', 'address1', 'address2', 'address3', 'postal_code', 'city', 'state'
+    ];
+
+    public function organization() {
+        return $this->belongsTo(Organization::class, 'organization_id', 'id');
+    }
+}
